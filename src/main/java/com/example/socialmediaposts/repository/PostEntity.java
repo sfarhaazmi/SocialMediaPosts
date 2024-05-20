@@ -3,6 +3,8 @@ package com.example.socialmediaposts.repository;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,7 +12,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "post")
-@Data
+@Getter
+@Setter
 public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
