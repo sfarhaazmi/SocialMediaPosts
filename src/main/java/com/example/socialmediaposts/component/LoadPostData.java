@@ -17,12 +17,13 @@ public class LoadPostData implements CommandLineRunner {
     private ISpringDataPostRepository postRepository;
 
     @Override
-    public void run(String... args) throws Exception {
-        for (int i = 1; i <= 100; i++) {
+    public void run(String... args) {
+        for (int i = 1; i <= 10; i++) {
             PostEntity post = new PostEntity();
             post.setTitle("Post Title " + i);
             post.setDescription("This is the description for post number " + i);
             post.setCreatedAt(LocalDateTime.now());
+            post.setUpdatedAt(LocalDateTime.now());
 
             List<CommentEntity> comments = new ArrayList<>();
             for (int j = 1; j <= 1; j++) {

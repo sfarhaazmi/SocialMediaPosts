@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -60,7 +59,9 @@ public class PostService {
             if (postDTO.getComments() != null) { // Check if comments are not null
                 for (CommentDTO commentDTO : postDTO.getComments()) {
                     CommentEntity commentEntity = new CommentEntity();
+                    commentEntity.setPost(existingPost);
                     commentEntity.setContent(commentDTO.getContent());
+                    commentEntity.setCreatedAt(LocalDateTime.now());
                     commentsToUpdate.add(commentEntity);
                 }
             }

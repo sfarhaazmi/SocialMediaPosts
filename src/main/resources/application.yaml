@@ -1,0 +1,26 @@
+server:
+  port: 8090
+  max-http-request-header-size: 64KB
+  tomcat:
+    max-http-response-header-size: 64KB
+spring:
+  application:
+    name: social-media-posts-service
+  main:
+    banner-mode: "off"
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: securepass123
+
+
+
+
