@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.View;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -19,6 +20,8 @@ public class PostControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
+    private View error;
 
     @Test
     @DisplayName("Test get all posts")
@@ -78,5 +81,18 @@ public class PostControllerTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/posts/999")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @DisplayName("Test create post with description exceeding 1000 characters")
+    public void testCreatePostWithLongDescription() throws Exception {
+        String longDescription = "a".repeat(1001);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/posts")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"description\": \"" + longDescription + "\"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("Data Integrity Violation"))
+                .andExpect(jsonPath("$.message").value("Post description cannot exceed 1000 characters"));
     }
 }
