@@ -1,6 +1,7 @@
 package com.example.socialmediaposts.component;
 
 import com.example.socialmediaposts.repository.CommentEntity;
+import com.example.socialmediaposts.repository.IPostRepository;
 import com.example.socialmediaposts.repository.ISpringDataPostRepository;
 import com.example.socialmediaposts.repository.PostEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.List;
 @Component
 public class LoadPostData implements CommandLineRunner {
     @Autowired
-    private ISpringDataPostRepository postRepository;
+    private IPostRepository postRepository;
 
     @Override
     public void run(String... args) {
