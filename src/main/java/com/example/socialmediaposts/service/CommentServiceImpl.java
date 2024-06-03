@@ -1,6 +1,7 @@
 package com.example.socialmediaposts.service;
 
 import com.example.socialmediaposts.repository.CommentEntity;
+import com.example.socialmediaposts.repository.ICommentRepository;
 import com.example.socialmediaposts.repository.ISpringDataCommentRepository;
 import com.example.socialmediaposts.rest.response.CustomExceptions;
 import org.slf4j.Logger;
@@ -11,11 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CommentService {
-    private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
+public class CommentServiceImpl implements ICommentService{
+    private static final Logger logger = LoggerFactory.getLogger(CommentServiceImpl.class);
 
     @Autowired
-    private ISpringDataCommentRepository commentRepository;
+    private ICommentRepository commentRepository;
 
     public Page<CommentEntity> getComments(Long postId, Pageable pageable) {
         try {

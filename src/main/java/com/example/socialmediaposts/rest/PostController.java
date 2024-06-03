@@ -3,8 +3,8 @@ package com.example.socialmediaposts.rest;
 import com.example.socialmediaposts.model.PostDTO;
 import com.example.socialmediaposts.repository.CommentEntity;
 import com.example.socialmediaposts.repository.PostEntity;
-import com.example.socialmediaposts.service.CommentService;
-import com.example.socialmediaposts.service.PostService;
+import com.example.socialmediaposts.service.ICommentService;
+import com.example.socialmediaposts.service.IPostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +29,12 @@ public class PostController {
 
     private static final Logger logger = LoggerFactory.getLogger(PostController.class);
     @Autowired
-    private PostService postService;
+    private IPostService postService;
     @Autowired
-    private CommentService commentService;
+    private ICommentService commentService;
 
     @GetMapping
+    //default HTTP status for method
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @ApiResponses(
             value = {
@@ -67,7 +68,7 @@ public class PostController {
             @ApiResponse(responseCode = "400", description = "Invalid request body"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
-    public ResponseEntity<PostEntity> createPost(@RequestBody PostEntity post) {
+    public ResponseEntity<PostEntity> createPost(@RequestBody PostDTO post) {
         logger.info("Post created successfully");
         return new ResponseEntity<>(postService.createPost(post), HttpStatus.CREATED);
     }
