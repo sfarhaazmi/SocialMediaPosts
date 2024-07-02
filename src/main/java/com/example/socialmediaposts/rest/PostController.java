@@ -46,11 +46,11 @@ public class PostController {
                             responseCode = "403",
                             description = "Access denied")
             })
-    public ResponseEntity<Page<PostEntity>> getAllPosts(
+    public ResponseEntity<Page<PostDTO>> getAllPosts(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
-        Page<PostEntity> posts = postService.getAllPosts(pageable);
+        Page<PostDTO> posts = postService.getAllPosts(pageable);
         if (!posts.isEmpty()) {
             logger.info("Retrieved all posts successfully");
             return ResponseEntity.ok(posts);
@@ -68,7 +68,7 @@ public class PostController {
             @ApiResponse(responseCode = "400", description = "Invalid request body"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
-    public ResponseEntity<PostEntity> createPost(@RequestBody PostDTO post) {
+    public ResponseEntity<PostDTO> createPost(@RequestBody PostDTO post) {
         logger.info("Post created successfully");
         return new ResponseEntity<>(postService.createPost(post), HttpStatus.CREATED);
     }

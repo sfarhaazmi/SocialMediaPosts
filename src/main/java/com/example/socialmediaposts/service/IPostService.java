@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface IPostService {
-    Page<PostEntity> getAllPosts(Pageable pageable);
+    Page<PostDTO> getAllPosts(Pageable pageable);
 
-    PostEntity createPost(PostDTO postDTO);
+    PostDTO createPost(PostDTO postDTO);
 
     PostEntity updatePost(Long id, PostDTO postDTO);
 

@@ -27,7 +27,7 @@ public class LoadPostData implements CommandLineRunner {
             post.setUpdatedAt(LocalDateTime.now());
 
             List<CommentEntity> comments = new ArrayList<>();
-            for (int j = 1; j <= 1; j++) {
+            for (int j = 1; j <= 2; j++) {
                 CommentEntity comment = new CommentEntity();
                 comment.setContent("This is comment " + j + " for post number " + i);
                 comment.setCreatedAt(LocalDateTime.now());
