@@ -1,0 +1,24 @@
+Craft Demo: (~30mins)
+Problem Statement
+Design a social media posts service that supports. 
+1.	CRUD features for posts. 
+2.	List should return n recent posts. 
+Technical/non-functional specs: 
+•	JVM max heap size 128 MB
+•	Keep modularity of the code in mind when designing APIs and implementation
+•	Think through scalability.
+•	List operation should be able to support millions of posts.
+•	Feel free to use your choice of DB (in memory database is recommended)
+Key assumptions: 
+•	Post attributes can be similar to a Facebook post or linked post.
+•	Description field supports 1000 characters.
+•	More “read” requests than create/edit/delete posts.
+Deliverables: 
+•	No UI required and feel free to use your choice of client to demonstrate the API responses.
+•	Working setup of the service (using Spring framework)
+•	All features should work as expected with 200 as response code and response body containing the appropriate content. Feel free to use your choice of client.
+•	Use Spring security to reject API calls to any non-existent REST endpoint with a 403 response.
+•	List operation should be able to demonstrate that it can handle 1 million posts. So, have 1 million posts (with the description field containing 1000 characters) in the database prior to your demonstration. Feel free to create duplicate posts with unique identifiers.
+•	API design, Database design, relationship between entities, class design, pagination concepts 
+•	Unit and Integration tests
+•	Assumptions, approach - for chosen libraries/frameworks, advantages and comparisons shall be clearly stated.
